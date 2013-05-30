@@ -52,6 +52,4 @@ describe "Static  pages" do
 						:text => "Protego | Contact")
 			end
 		end
-
->>>>>>> static_pages
 end
