@@ -1,6 +1,4 @@
-<<<<<<< HEAD
- Protego::Application.routes.draw do
-=======
+
 Protego::Application.routes.draw do
   get "static_pages/home"
 
@@ -12,7 +10,6 @@ Protego::Application.routes.draw do
   
   #match 'static_pages/home' => 'static_pages#home'
   
->>>>>>> static_pages
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
