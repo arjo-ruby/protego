@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "Static  pages" do
  
-	describe "Home Page" do
+	describe "Home Page" do #Home 
 		it "should have the content 'Prototype Home'" do
-			visit '/static_pages/home'
+			visit '/static_pages/home' #capybara syntax
 			page.should have_selector('h1', 
 					:text => 'Home') 
 		end
@@ -15,11 +15,11 @@ describe "Static  pages" do
 		end
 	end
 
-	describe "Help Page" do
+	describe "Help Page" do #Help
 		it "should have the content 'Help'" do
 			visit '/static_pages/help'
 			page.should have_selector('h1', 
-					:text => 'Prototype Help') 
+					:text => 'Help') 
 		end
 		it "should have the page title " do
 			visit '/static_pages/help'
@@ -27,7 +27,7 @@ describe "Static  pages" do
 					:text => "Protego | Help")
 		end
 	end
-	describe "About Page" do
+	describe "About Page" do # action or basically the name of page !! 
 		it "should have the content 'About'" do
 			visit '/static_pages/about'
 			page.should have_selector('h1',
