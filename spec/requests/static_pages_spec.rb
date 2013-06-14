@@ -1,60 +1,55 @@
 require 'spec_helper'
 
 describe "Static  pages" do
- 
-	describe "Home Page" do #Home 
-		it "should have the content 'Prototype Home'" do
-			visit '/static_pages/home' #capybara syntax
-			page.should have_selector('h1', 
-					:text => 'Home') 
-		end
-		it "should have the base title" do
-			visit '/static_pages/home'
-			page.should have_selector('title', 
-					:text => "Protego")
-		end
 
-		it "should not have a custom page title" do 
-			visit '/static_pages/home'
-			page.should_not have_selector('title', :text => '| Home')
-		end 
+	subject { page }
+
+	describe "Home Page" do #Home 
+
+		before { visit root_path }
+
+		it { should have_selector('h1', text: 'Protego') } 
+		it { should have_selector('title', text: full_title('')) }
+
+		it { should_not have_selector('title', :text => '| Home')}
 	end
 
 	describe "Help Page" do #Help
-		it "should have the content 'Help'" do
-			visit '/static_pages/help'
-			page.should have_selector('h1', 
-					:text => 'Help') 
-		end
-		it "should have the page title " do
-			visit '/static_pages/help'
-			page.should have_selector('title', 
-					:text => "Protego | Help")
-		end
+
+		before { visit help_path }
+
+		it { should have_selector('h1', text: 'Help') }
+		it { should have_selector('title', text: full_title('Help')) }
 	end
+
+	
 	describe "About Page" do # action or basically the name of page !! 
-		it "should have the content 'About'" do
-			visit '/static_pages/about'
-			page.should have_selector('h1',
-					:text => 'About Us') 
-		end
-		it "should have the page title " do
-			visit '/static_pages/about'
-			page.should have_selector('title', 
-					:text => "Protego | About Us")
-		end
+	
+		before { visit about_path }
+
+		it { should have_selector('h1', text: 'About Us') }
+		it { should have_selector('title', text: full_title('About Us')) }
 	end
 
 	describe "Contact Page" do
-			it "should have the content 'Contact'" do
-				visit '/static_pages/contact'
-				page.should have_selector('h1',
-						:text => 'Contact') 
-			end
-			it "should have the page title " do
-				visit '/static_pages/contact'
-				page.should have_selector('title', 
-						:text => "Protego | Contact")
-			end
-		end
+			before { visit contact_path }
+
+			it { should have_selector('h1', text:'Contact') } 
+			it { should have_selector('title', text: full_title('Contact'))}
+	end
+
+# capybara testings ! 
+
+	it "should have the right links on the layout" do
+		visit root_path
+		click_link "About"
+		page.should have_selector 'title' , text: full_title('About Us')
+		click_link "Help"
+		page.should have_selector 'title', text: full_title('Help')
+		click_link "Contact"
+		page.should have_selector 'title' ,text: full_title('Contact')
+		click_link "Home"
+		click_link "Sign up Now!"
+		page.should have_selector 'title', text: full_title('Sign Up Now')
+	end
 end
