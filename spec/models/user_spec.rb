@@ -12,9 +12,10 @@ describe User do
 	it { should respond_to(:name) }
 	it { should respond_to(:email) }
 	it { should respond_to(:password_digest)}
-
 	it { should respond_to(:password)}
 	it { should respond_to(:password_confirmation)}
+
+	it { should respond_to(:remember_token)}
 
 	it {should respond_to(:authenticate)}
 
@@ -100,4 +101,18 @@ describe User do
 		end
 	end
 
+
+	describe "remember_token" do
+
+		before{ @user.save }
+		it "should have a nonblank remember_token" do
+			subject.remember_token.should_not be_blank
+		end
+	end
+
+
+
+
+
+	
 end
